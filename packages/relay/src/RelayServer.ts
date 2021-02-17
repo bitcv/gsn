@@ -664,7 +664,7 @@ latestBlock timestamp   | ${latestBlock.timestamp}
 
   async _queryLatestActiveEvent (): Promise<EventData | undefined> {
     const events: EventData[] = await this.contractInteractor.getPastEventsForHub([address2topic(this.managerAddress)], {
-      fromBlock: 1
+      fromBlock: 2218000
     })
     return getLatestEventData(events)
   }

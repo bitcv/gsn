@@ -651,7 +651,7 @@ export default class ContractInteractor {
 
   async getRegisteredWorkers (managerAddress: Address): Promise<Address[]> {
     const topics = address2topic(managerAddress)
-    const workersAddedEvents = await this.getPastEventsForHub([topics], { fromBlock: 1 }, [RelayWorkersAdded])
+    const workersAddedEvents = await this.getPastEventsForHub([topics], { fromBlock: 2218000 }, [RelayWorkersAdded])
     return workersAddedEvents.map(it => it.returnValues.newRelayWorkers).flat()
   }
 }

@@ -72,7 +72,7 @@ export class VersionRegistry {
    * @param id object id to return version history for
    */
   async getAllVersions (id: string): Promise<VersionInfo[]> {
-    const events = await this.registryContract.getPastEvents('allEvents', { fromBlock: 1, topics: [null, string32(id)] })
+    const events = await this.registryContract.getPastEvents('allEvents', { fromBlock: 2218000, topics: [null, string32(id)] })
     // map of ver=>reason, for every canceled version
     const cancelReasons: { [key: string]: string } = events.filter(e => e.event === 'VersionCanceled').reduce((set, e) => ({
       ...set,
@@ -103,7 +103,7 @@ export class VersionRegistry {
 
   // return all IDs registered
   async listIds (): Promise<string[]> {
-    const events = await this.registryContract.getPastEvents('VersionAdded', { fromBlock: 1 })
+    const events = await this.registryContract.getPastEvents('VersionAdded', { fromBlock: 2218000 })
     const ids = new Set(events.map(e => bytes32toString(e.returnValues.id)))
     return Array.from(ids)
   }

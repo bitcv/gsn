@@ -107,19 +107,19 @@ export default class StatisticsManager {
 
   async fetchRelayHubEvents (): Promise<void> {
     const transactionDepositedEventsData =
-      await this.contractInteractor.getPastEventsForHub([], { fromBlock: 1 }, [Deposited])
+      await this.contractInteractor.getPastEventsForHub([], { fromBlock: 2218000, }, [Deposited])
     const depositedEvents = this.extractTransactionInfos<DepositedEventInfo>(transactionDepositedEventsData, Deposited)
 
     const relayRegisteredEventsData =
-      await this.contractInteractor.getPastEventsForHub([], { fromBlock: 1 }, [RelayServerRegistered])
+      await this.contractInteractor.getPastEventsForHub([], { fromBlock: 2218000, }, [RelayServerRegistered])
     const relayRegisteredEvents = this.extractTransactionInfos<RelayRegisteredEventInfo>(relayRegisteredEventsData, RelayServerRegistered)
 
     const transactionRelayedEventsData =
-      await this.contractInteractor.getPastEventsForHub([], { fromBlock: 1 }, [TransactionRelayed])
+      await this.contractInteractor.getPastEventsForHub([], { fromBlock: 2218000, }, [TransactionRelayed])
     const transactionRelayedEvents = this.extractTransactionInfos<TransactionRelayedEventInfo>(transactionRelayedEventsData, TransactionRelayed)
 
     const transactionRejectedEventsData =
-      await this.contractInteractor.getPastEventsForHub([], { fromBlock: 1 }, [TransactionRejectedByPaymaster])
+      await this.contractInteractor.getPastEventsForHub([], { fromBlock: 2218000, }, [TransactionRejectedByPaymaster])
     const transactionRejectedEvents = this.extractTransactionInfos<TransactionRejectedByPaymasterEventInfo>(transactionRejectedEventsData, TransactionRejectedByPaymaster)
 
     this.allRelayHubEvents = {
@@ -304,7 +304,7 @@ export default class StatisticsManager {
   }
 
   async fetchStakeManagerEvents (): Promise<void> {
-    const allEvents = await this.contractInteractor.getPastEventsForStakeManager(allStakeManagerEvents, [], { fromBlock: 1 })
+    const allEvents = await this.contractInteractor.getPastEventsForStakeManager(allStakeManagerEvents, [], { fromBlock: 2218000 })
 
     const stakeAddedEvents = this.extractTransactionInfos<StakeAddedEventInfo>(allEvents, StakeAdded)
     const stakeUnlockedEvents = this.extractTransactionInfos<StakeUnlockedEventInfo>(allEvents, StakeUnlocked)
